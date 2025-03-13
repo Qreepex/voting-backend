@@ -5,7 +5,6 @@ import (
 
 	"github.com/qreepex/voting-backend/internal/data"
 	"github.com/qreepex/voting-backend/internal/redis"
-	"github.com/qreepex/voting-backend/internal/service"
 	"github.com/qreepex/voting-backend/internal/web"
 
 	_ "github.com/joho/godotenv/autoload"
@@ -22,7 +21,5 @@ func main() {
 		log.Fatalf("Failed to initialize redis: %v", err)
 	}
 
-	vote_checker := service.NewCheckVoteEligibilityService(redisClient)
-	web.Init(vote_checker, db, redisClient)
-
+	web.Init(db, redisClient)
 }
