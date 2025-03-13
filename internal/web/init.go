@@ -1,7 +1,5 @@
 package web
 
-// init web server using mux
-
 import (
 	"encoding/json"
 	"log"
@@ -10,15 +8,12 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/qreepex/voting-backend/internal/data"
 	"github.com/qreepex/voting-backend/internal/redis"
-	"github.com/qreepex/voting-backend/internal/service"
 )
 
-var checkVoteEligibilityService *service.CheckVoteEligibilityService
 var redisClient *redis.Redis
 var database *data.Database
 
-func Init(vote_checker *service.CheckVoteEligibilityService, db *data.Database, redis *redis.Redis) {
-	checkVoteEligibilityService = vote_checker
+func Init(db *data.Database, redis *redis.Redis) {
 	database = db
 	redisClient = redis
 
